@@ -28,6 +28,7 @@
     <div class="sbt"><input id="srch" placeholder="🔍 Search..."></div>
     <div id="nav"></div>
   </nav>
+  <div id="overlay"></div>
   <main id="main">
     <div id="wel">
       <div class="ico">📖</div>
@@ -46,7 +47,7 @@
 <!-- Load your lesson data first -->
 <script src="data.js"></script>
 
-<!-- Inline JS replaces app.js -->
+<!-- Inline JS -->
 <script>
 function safe(obj,key,fallback=""){return obj&&obj[key]!==undefined?obj[key]:fallback;}
 var W=(typeof LESSONS!=="undefined"&&Array.isArray(LESSONS))?LESSONS:[];
@@ -89,28 +90,64 @@ function switchTab(i){
   const l=W[sel];if(!l)return;
   if(i===0)document.getElementById("tc0").innerHTML=`<h3>Overview</h3><p>${safe(l.p,"co")}</p><p>${safe(l.p,"lo")}</p>`;
   if(i===1)document.getElementById("tc1").innerHTML=`<h3>I Do</h3><p>${safe(l.l,"co")}</p>`;
-  if(i===2)document.getElementById("tc2").innerHTML=`<h3>We Do</h3><p>${safe(l.l,"lo")}</p>`;
+  if(i===2)genWeDo(l);
   if(i===3)document.getElementById("tc3").innerHTML=`<h3>You Do</h3><pre>${JSON.stringify(safe(l.l,"wd",{}),null,2)}</pre>`;
-  if(i===4)document.getElementById("tc4").innerHTML=`<h3>Scaffold & Diff</h3><pre>${JSON.stringify(safe(l,"df",{}),null,2)}</pre>`;
+  if(i===4)genScaffold(l);
   if(i===5)genDT(l.u,mode);
   if(i===6)genDailyPlan(l);
 }
 
+function genWeDo(l){
+  const tc=document.getElementById("tc2");
+  tc.innerHTML="<h3>We Do</h3>";
+  Object.entries(safe(l.l,"wd",{})).forEach(([level,text])=>{
+    tc.innerHTML+=`<div class="do"><div class="dl">${level}</div><div>${text}</div></div>`;
+  });
+}
+
+function genScaffold(l){
+  const tc=document.getElementById("tc4");
+  tc.innerHTML="<h3>Scaffold & Differentiation</h3>";
+  Object.entries(safe(l,"df",{})).forEach(([level,text])=>{
+    tc.innerHTML+=`<div class="do"><div class="dl">${level.toUpperCase()}</div><div>${text}</div></div>`;
+  });
+}
+
 function genDT(unit,mode){
   const tc=document.getElementById("tc5");const key=`dt_${unit}_${mode}`;
-  const data=JSON.parse(localStorage.getItem(key)||"[]");
+  let data=JSON.parse(localStorage.getItem(key)||"[]");
   tc.innerHTML="<h3>Data Tracker</h3>";
+  tc.innerHTML+=`<div id="studentForm">
+                   <input id="stuName" placeholder="Student name">
+                   <input id="stuNotes" placeholder="Notes">
+                   <button id="addStu">➕ Add Student</button>
+                 </div>`;
+  document.getElementById("addStu").onclick=()=>{
+    const name=document.getElementById("stuName").value;
+    const notes=document.getElementById("stuNotes").value;
+    if(name){
+      data.push({name,notes});
+      localStorage.setItem(key,JSON.stringify(data));
+      genDT(unit,mode);
+    }
+  };
   if(!data.length){tc.innerHTML+="<p class='demp'>No student data yet.</p>";return;}
   const table=document.createElement("table");table.className="dttable";
   table.innerHTML="<tr><th>Name</th><th>Notes</th></tr>";
-  data.forEach(stu=>{const tr=document.createElement("tr");tr.innerHTML=`<td>${safe(stu,"name","(Unnamed)")}</td><td>${safe(stu,"notes","")}</td>`;table.appendChild(tr);});
+  data.forEach(stu=>{
+    const tr=document.createElement("tr");
+    tr.innerHTML=`<td>${stu.name}</td><td>${stu.notes}</td>`;
+    table.appendChild(tr);
+  });
   tc.appendChild(table);
 }
 
 function genDailyPlan(l){
   const tc=document.getElementById("tc6");tc.innerHTML="<h3>Daily Plan</h3>";
   tc.innerHTML+=`<div class="try"><div class="try-i">💡</div><div><div class="try-l">Try This</div><div class="try-t">${safe(l,"tp","No prompt available")}</div></div></div>`;
-  const df=safe(l,"df",{});["b","o","a","e"].forEach(lvl=>{if(df[lvl])tc.innerHTML+=`<div class="do"><div class="dl">${lvl.toUpperCase()}</div><div>${df[lvl]}</div></div>`;});
+  const df=safe(l,"df",{});["b","o","a","e"].forEach(lvl=>{
+    if(df[lvl])tc.innerHTML+=`<div class="do"><div class="dl">${lvl.toUpperCase()}</div><div>${df[lvl]}</div></div>`;
+  });
 }
 
 function toggleMode(newMode){if(sel===null){console.warn("No lesson selected yet");return;}mode=newMode;renderLesson();}
@@ -120,6 +157,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   document.getElementById("bp").onclick=()=>toggleMode("push");
   document.getElementById("bl").onclick=()=>toggleMode("pull");
   document.getElementById("sbtog").onclick=()=>document.getElementById("sb").classList.toggle("open");
+  document.getElementById("overlay").onclick=()=>document.getElementById("sb").classList.remove("open");
   document.getElementById("pbtn").onclick=()=>window.print();
 });
 </script>
