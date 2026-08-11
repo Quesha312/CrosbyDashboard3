@@ -11,6 +11,7 @@ function validateLesson(l) {
 // ====== Global State ======
 var W = Array.isArray(LESSONS) ? LESSONS : [];
 var sel = null;
+var mode = "push"; // default mode
 
 // ====== Navigation ======
 function buildNav() {
@@ -41,7 +42,7 @@ function buildNav() {
 function loadLesson(i) {
   try {
     sel = i;
-    console.log("Loading lesson index:", i);
+    console.log("Loading lesson index:", i, "mode:", mode);
     renderLesson();
   } catch (err) {
     console.error("Lesson load failed:", err);
@@ -59,7 +60,7 @@ function renderLesson() {
 
     // Header
     const header = document.createElement("div");
-    header.className = "chdr push";
+    header.className = "chdr " + mode;
     header.innerHTML = `<div class="ctitle">${safe(l,"t")}</div>
                         <div class="cbc">${safe(l,"c")}</div>`;
     cw.appendChild(header);
@@ -108,7 +109,11 @@ function switchTab(i) {
     if (!l) return;
 
     if (i === 0) genOverview(l);
-    if (i === 5) genDT(l.u, "push"); // example: push mode
+    if (i === 1) genIDo(l);
+    if (i === 2) genWeDo(l);
+    if (i === 3) genYouDo(l);
+    if (i === 4) genScaffold(l);
+    if (i === 5) genDT(l.u, mode);
     if (i === 6) genDailyPlan(l);
   } catch (err) {
     console.error("Tab switch failed:", err);
@@ -121,6 +126,26 @@ function genOverview(l) {
   tc.innerHTML = `<h3>Overview</h3>
                   <p>${safe(l.p,"co")}</p>
                   <p>${safe(l.p,"lo")}</p>`;
+}
+
+function genIDo(l) {
+  const tc = document.getElementById("tc1");
+  tc.innerHTML = `<h3>I Do</h3><p>${safe(l.l,"co")}</p>`;
+}
+
+function genWeDo(l) {
+  const tc = document.getElementById("tc2");
+  tc.innerHTML = `<h3>We Do</h3><p>${safe(l.l,"lo")}</p>`;
+}
+
+function genYouDo(l) {
+  const tc = document.getElementById("tc3");
+  tc.innerHTML = `<h3>You Do</h3><pre>${JSON.stringify(safe(l.l,"wd",{}),null,2)}</pre>`;
+}
+
+function genScaffold(l) {
+  const tc = document.getElementById("tc4");
+  tc.innerHTML = `<h3>Scaffold & Diff</h3><pre>${JSON.stringify(safe(l,"df",{}),null,2)}</pre>`;
 }
 
 // ====== Data Tracker ======
@@ -208,6 +233,20 @@ function genDailyPlan(l) {
     document.getElementById("tc6").innerHTML = "<p>Error loading Daily Plan.</p>";
   }
 }
+
+// ====== Mode Toggle & Print ======
+function toggleMode(newMode) {
+  console.log("Switching mode:", newMode);
+  mode = newMode;
+  renderLesson();
+}
+
+document.getElementById("pbtn").onclick = () => toggleMode("push");
+document.getElementById("sbtn").onclick = () => toggleMode("pull");
+document.getElementById("printBtn").onclick = () => {
+  console.log("Printing lesson");
+  window.print();
+};
 
 // ====== Init ======
 document.addEventListener("DOMContentLoaded", buildNav);
