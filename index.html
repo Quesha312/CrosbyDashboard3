@@ -43,7 +43,86 @@
   </main>
 </div>
 
+<!-- Load your lesson data first -->
 <script src="data.js"></script>
-<script src="app.js"></script>
+
+<!-- Inline JS replaces app.js -->
+<script>
+function safe(obj,key,fallback=""){return obj&&obj[key]!==undefined?obj[key]:fallback;}
+var W=(typeof LESSONS!=="undefined"&&Array.isArray(LESSONS))?LESSONS:[];
+var sel=null;var mode="push";
+
+function buildNav(){
+  const nav=document.getElementById("nav");nav.innerHTML="";
+  W.forEach((l,i)=>{
+    const item=document.createElement("div");
+    item.className="witem";
+    item.textContent=`Unit ${l.u} Week ${l.w}: ${safe(l,"t")}`;
+    item.onclick=()=>{sel=i;loadLesson(i);document.getElementById("sb").classList.remove("open");};
+    nav.appendChild(item);
+  });
+}
+
+function loadLesson(i){sel=i;renderLesson();}
+function renderLesson(){
+  if(sel===null)return;
+  const l=W[sel];const cw=document.getElementById("cw");
+  cw.style.display="block";cw.innerHTML="";
+  const header=document.createElement("div");
+  header.className="chdr "+mode;
+  header.innerHTML=`<div class="ctitle">${safe(l,"t")}</div><div class="cbc">${safe(l,"c")}</div>`;
+  cw.appendChild(header);
+  const tabs=["Overview","I Do","We Do","You Do","Scaffold & Diff","Data Tracker","Daily Plan"];
+  const tabBar=document.createElement("div");tabBar.className="tabs";
+  tabs.forEach((tabName,idx)=>{
+    const tab=document.createElement("button");tab.className="tab";tab.textContent=tabName;
+    tab.onclick=()=>switchTab(idx);tabBar.appendChild(tab);
+  });
+  cw.appendChild(tabBar);
+  tabs.forEach((_,idx)=>{const tc=document.createElement("div");tc.className="tc";tc.id="tc"+idx;cw.appendChild(tc);});
+  switchTab(0);
+}
+
+function switchTab(i){
+  document.querySelectorAll(".tab").forEach((t,idx)=>t.classList.toggle("on",idx===i));
+  document.querySelectorAll(".tc").forEach((c,idx)=>c.classList.toggle("on",idx===i));
+  const l=W[sel];if(!l)return;
+  if(i===0)document.getElementById("tc0").innerHTML=`<h3>Overview</h3><p>${safe(l.p,"co")}</p><p>${safe(l.p,"lo")}</p>`;
+  if(i===1)document.getElementById("tc1").innerHTML=`<h3>I Do</h3><p>${safe(l.l,"co")}</p>`;
+  if(i===2)document.getElementById("tc2").innerHTML=`<h3>We Do</h3><p>${safe(l.l,"lo")}</p>`;
+  if(i===3)document.getElementById("tc3").innerHTML=`<h3>You Do</h3><pre>${JSON.stringify(safe(l.l,"wd",{}),null,2)}</pre>`;
+  if(i===4)document.getElementById("tc4").innerHTML=`<h3>Scaffold & Diff</h3><pre>${JSON.stringify(safe(l,"df",{}),null,2)}</pre>`;
+  if(i===5)genDT(l.u,mode);
+  if(i===6)genDailyPlan(l);
+}
+
+function genDT(unit,mode){
+  const tc=document.getElementById("tc5");const key=`dt_${unit}_${mode}`;
+  const data=JSON.parse(localStorage.getItem(key)||"[]");
+  tc.innerHTML="<h3>Data Tracker</h3>";
+  if(!data.length){tc.innerHTML+="<p class='demp'>No student data yet.</p>";return;}
+  const table=document.createElement("table");table.className="dttable";
+  table.innerHTML="<tr><th>Name</th><th>Notes</th></tr>";
+  data.forEach(stu=>{const tr=document.createElement("tr");tr.innerHTML=`<td>${safe(stu,"name","(Unnamed)")}</td><td>${safe(stu,"notes","")}</td>`;table.appendChild(tr);});
+  tc.appendChild(table);
+}
+
+function genDailyPlan(l){
+  const tc=document.getElementById("tc6");tc.innerHTML="<h3>Daily Plan</h3>";
+  tc.innerHTML+=`<div class="try"><div class="try-i">💡</div><div><div class="try-l">Try This</div><div class="try-t">${safe(l,"tp","No prompt available")}</div></div></div>`;
+  const df=safe(l,"df",{});["b","o","a","e"].forEach(lvl=>{if(df[lvl])tc.innerHTML+=`<div class="do"><div class="dl">${lvl.toUpperCase()}</div><div>${df[lvl]}</div></div>`;});
+}
+
+function toggleMode(newMode){if(sel===null){console.warn("No lesson selected yet");return;}mode=newMode;renderLesson();}
+
+document.addEventListener("DOMContentLoaded",()=>{
+  buildNav();
+  document.getElementById("bp").onclick=()=>toggleMode("push");
+  document.getElementById("bl").onclick=()=>toggleMode("pull");
+  document.getElementById("sbtog").onclick=()=>document.getElementById("sb").classList.toggle("open");
+  document.getElementById("pbtn").onclick=()=>window.print();
+});
+</script>
+
 </body>
 </html>
