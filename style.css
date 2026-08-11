@@ -10,7 +10,7 @@ body{font-family:system-ui,sans-serif;background:#f5f3ff;color:#1e1b4b;font-size
 .hb{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:5px 10px;border-radius:7px;font-size:.72rem;cursor:pointer}
 #layout{display:flex;height:calc(100vh - 54px)}
 #sb{width:228px;min-width:228px;background:#fff;border-right:1px solid #ddd6fe;overflow-y:auto;flex-shrink:0}
-@media(max-width:680px){#sb{position:fixed;left:-228px;top:54px;height:calc(100vh - 54px);z-index:90;box-shadow:3px 0 20px rgba(0,0,0,.15);transition:.25s}#sb.open{left:0}}
+@media(max-width:680px){#sb{position:fixed;left:-228px;top:54px;width:228px;height:calc(100vh - 54px);background: #ffff;border-right: 1px solid #ddd6fe;z-index:90;box-shadow:3px 0 20px rgba(0,0,0,.15);overflow-y:auto;transition:left 0.3s ease;}#sb.open{left:0}}
 .sbt{padding:8px 10px;border-bottom:1px solid #ddd6fe}
 .sbt input{width:100%;padding:6px 10px;border:1px solid #ddd6fe;border-radius:7px;font-size:.75rem;background:#f5f3ff;outline:none}
 .sbt input:focus{border-color:#7c3aed}
