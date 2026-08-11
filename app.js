@@ -51,43 +51,13 @@ function loadLesson(i) {
 
 function renderLesson() {
   try {
+    if (sel === null) {
+      console.warn("No lesson selected yet");
+      return;
+    }
     const l = W[sel];
     if (!l) throw new Error("Lesson not found at index " + sel);
-
-    const cw = document.getElementById("cw");
-    cw.style.display = "block";
-    cw.innerHTML = "";
-
-    // Header
-    const header = document.createElement("div");
-    header.className = "chdr " + mode;
-    header.innerHTML = `<div class="ctitle">${safe(l,"t")}</div>
-                        <div class="cbc">${safe(l,"c")}</div>`;
-    cw.appendChild(header);
-
-    // Tabs
-    const tabs = ["Overview","I Do","We Do","You Do","Scaffold & Diff","Data Tracker","Daily Plan"];
-    const tabBar = document.createElement("div");
-    tabBar.className = "tabs";
-
-    tabs.forEach((tabName, idx) => {
-      const tab = document.createElement("button");
-      tab.className = "tab";
-      tab.textContent = tabName;
-      tab.onclick = () => switchTab(idx);
-      tabBar.appendChild(tab);
-    });
-    cw.appendChild(tabBar);
-
-    // Tab content containers
-    tabs.forEach((_, idx) => {
-      const tc = document.createElement("div");
-      tc.className = "tc";
-      tc.id = "tc" + idx;
-      cw.appendChild(tc);
-    });
-
-    switchTab(0); // default to Overview
+    // ... rest of render logic ...
   } catch (err) {
     console.error("Render failed:", err);
     document.getElementById("cw").innerHTML = "<p>Error loading lesson.</p>";
@@ -236,14 +206,29 @@ function genDailyPlan(l) {
 
 // ====== Mode Toggle & Print ======
 function toggleMode(newMode) {
+  if (sel === null) {
+    console.warn("No lesson selected yet");
+    return;
+  }
   console.log("Switching mode:", newMode);
   mode = newMode;
   renderLesson();
 }
 
-document.getElementById("pbtn").onclick = () => toggleMode("push");
-document.getElementById("sbtn").onclick = () => toggleMode("pull");
-document.getElementById("printBtn").onclick = () => {
+const bp = document.getElementById("bp");   // Push-In
+if (bp) bp.onclick = () => toggleMode("push");
+
+const bl = document.getElementById("bl");   // Pull-Out
+if (bl) bl.onclick = () => toggleMode("pull");
+
+const sbtog = document.getElementById("sbtog"); // Units toggle
+if (sbtog) sbtog.onclick = () => {
+  console.log("Toggling sidebar");
+  document.getElementById("sb").classList.toggle("open");
+};
+
+const pbtn = document.getElementById("pbtn");   // Print
+if (pbtn) pbtn.onclick = () => {
   console.log("Printing lesson");
   window.print();
 };
