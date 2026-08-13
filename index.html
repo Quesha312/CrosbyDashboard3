@@ -1,166 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ms. Crosby's ELL Reading Dashboard</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ms. Crosby ELL Reading Dashboard — Push-In & Pull-Out Lesson Planner" />
+  <title>Ms. Crosby ELL Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<div id="hdr">
-  <div class="ht">
-    📚 Ms. Crosby's ELL Reading Dashboard 
-    <small>Grade 3 · myView Literacy · VDOE + CIP + Vista Connect 2022 Level 3 · 2026-27</small>
-  </div>
-  <div class="hr">
-    <div class="tog">
-      <button class="tb on" id="bp">🏫 Push-In</button>
-      <button class="tb" id="bl">👥 Pull-Out</button>
+  <header>
+    <h1>📚 Ms. Crosby ELL Dashboard</h1>
+    <div class="header-controls">
+      <button id="mode-toggle">Switch to Pull-Out</button>
+      <button id="print-btn">🖨 Print Lesson</button>
     </div>
-    <button class="hb" id="sbtog">☰ Units</button>
-    <button class="hb" id="pbtn">🖨 Print</button>
-  </div>
-</div>
+  </header>
 
-<div id="layout">
-  <nav id="sb">
-    <div class="sbt"><input id="srch" placeholder="🔍 Search..."></div>
-    <div id="nav"></div>
-  </nav>
-  <div id="overlay"></div>
-  <main id="main">
-    <div id="wel">
-      <div class="ico">📖</div>
-      <p><strong>Welcome, Ms. Crosby!</strong><br><br>
-         Select a unit and week from the sidebar.<br><br>
-         📋 Overview · 🎯 I Do · 👥 We Do · ✋ You Do · 🏗 Scaffold & Diff · 📊 Data Tracker · 📅 Daily Plan
-      </p>
-      <p style="font-size:.7rem;color:#c4b5fd;margin-top:6px">
-        Toggle Push-In vs Pull-Out at the top
-      </p>
+  <div id="app">
+
+    <!-- Sidebar: unit & week navigation -->
+    <nav id="sidebar" aria-label="Unit and Week Navigation"></nav>
+
+    <!-- Main panel: tabs + lesson content -->
+    <div id="main">
+      <div id="tabs" role="tablist" aria-label="Lesson Tabs"></div>
+      <div id="lesson-content" role="tabpanel"></div>
     </div>
-    <div id="cw"></div>
-  </main>
-</div>
 
-<!-- Load your lesson data first -->
-<script src="data.js"></script>
+  </div>
 
-<!-- Inline JS -->
-<script>
-function safe(obj,key,fallback=""){return obj&&obj[key]!==undefined?obj[key]:fallback;}
-var W=(typeof LESSONS!=="undefined"&&Array.isArray(LESSONS))?LESSONS:[];
-var sel=null;var mode="push";
+  <!-- Unit data files — must load before app.js -->
+  <script src="unit1.js"></script>
+  <script src="unit2.js"></script>
+  <script src="unit3.js"></script>
+  <script src="unit4.js"></script>
+  <script src="unit5.js"></script>
 
-function buildNav(){
-  const nav=document.getElementById("nav");nav.innerHTML="";
-  W.forEach((l,i)=>{
-    const item=document.createElement("div");
-    item.className="witem";
-    item.textContent=`Unit ${l.u} Week ${l.w}: ${safe(l,"t")}`;
-    item.onclick=()=>{sel=i;loadLesson(i);document.getElementById("sb").classList.remove("open");};
-    nav.appendChild(item);
-  });
-}
-
-function loadLesson(i){sel=i;renderLesson();}
-function renderLesson(){
-  if(sel===null)return;
-  const l=W[sel];const cw=document.getElementById("cw");
-  cw.style.display="block";cw.innerHTML="";
-  const header=document.createElement("div");
-  header.className="chdr "+mode;
-  header.innerHTML=`<div class="ctitle">${safe(l,"t")}</div><div class="cbc">${safe(l,"c")}</div>`;
-  cw.appendChild(header);
-  const tabs=["Overview","I Do","We Do","You Do","Scaffold & Diff","Data Tracker","Daily Plan"];
-  const tabBar=document.createElement("div");tabBar.className="tabs";
-  tabs.forEach((tabName,idx)=>{
-    const tab=document.createElement("button");tab.className="tab";tab.textContent=tabName;
-    tab.onclick=()=>switchTab(idx);tabBar.appendChild(tab);
-  });
-  cw.appendChild(tabBar);
-  tabs.forEach((_,idx)=>{const tc=document.createElement("div");tc.className="tc";tc.id="tc"+idx;cw.appendChild(tc);});
-  switchTab(0);
-}
-
-function switchTab(i){
-  document.querySelectorAll(".tab").forEach((t,idx)=>t.classList.toggle("on",idx===i));
-  document.querySelectorAll(".tc").forEach((c,idx)=>c.classList.toggle("on",idx===i));
-  const l=W[sel];if(!l)return;
-  if(i===0)document.getElementById("tc0").innerHTML=`<h3>Overview</h3><p>${safe(l.p,"co")}</p><p>${safe(l.p,"lo")}</p>`;
-  if(i===1)document.getElementById("tc1").innerHTML=`<h3>I Do</h3><p>${safe(l.l,"co")}</p>`;
-  if(i===2)genWeDo(l);
-  if(i===3)document.getElementById("tc3").innerHTML=`<h3>You Do</h3><pre>${JSON.stringify(safe(l.l,"wd",{}),null,2)}</pre>`;
-  if(i===4)genScaffold(l);
-  if(i===5)genDT(l.u,mode);
-  if(i===6)genDailyPlan(l);
-}
-
-function genWeDo(l){
-  const tc=document.getElementById("tc2");
-  tc.innerHTML="<h3>We Do</h3>";
-  Object.entries(safe(l.l,"wd",{})).forEach(([level,text])=>{
-    tc.innerHTML+=`<div class="do"><div class="dl">${level}</div><div>${text}</div></div>`;
-  });
-}
-
-function genScaffold(l){
-  const tc=document.getElementById("tc4");
-  tc.innerHTML="<h3>Scaffold & Differentiation</h3>";
-  Object.entries(safe(l,"df",{})).forEach(([level,text])=>{
-    tc.innerHTML+=`<div class="do"><div class="dl">${level.toUpperCase()}</div><div>${text}</div></div>`;
-  });
-}
-
-function genDT(unit,mode){
-  const tc=document.getElementById("tc5");const key=`dt_${unit}_${mode}`;
-  let data=JSON.parse(localStorage.getItem(key)||"[]");
-  tc.innerHTML="<h3>Data Tracker</h3>";
-  tc.innerHTML+=`<div id="studentForm">
-                   <input id="stuName" placeholder="Student name">
-                   <input id="stuNotes" placeholder="Notes">
-                   <button id="addStu">➕ Add Student</button>
-                 </div>`;
-  document.getElementById("addStu").onclick=()=>{
-    const name=document.getElementById("stuName").value;
-    const notes=document.getElementById("stuNotes").value;
-    if(name){
-      data.push({name,notes});
-      localStorage.setItem(key,JSON.stringify(data));
-      genDT(unit,mode);
-    }
-  };
-  if(!data.length){tc.innerHTML+="<p class='demp'>No student data yet.</p>";return;}
-  const table=document.createElement("table");table.className="dttable";
-  table.innerHTML="<tr><th>Name</th><th>Notes</th></tr>";
-  data.forEach(stu=>{
-    const tr=document.createElement("tr");
-    tr.innerHTML=`<td>${stu.name}</td><td>${stu.notes}</td>`;
-    table.appendChild(tr);
-  });
-  tc.appendChild(table);
-}
-
-function genDailyPlan(l){
-  const tc=document.getElementById("tc6");tc.innerHTML="<h3>Daily Plan</h3>";
-  tc.innerHTML+=`<div class="try"><div class="try-i">💡</div><div><div class="try-l">Try This</div><div class="try-t">${safe(l,"tp","No prompt available")}</div></div></div>`;
-  const df=safe(l,"df",{});["b","o","a","e"].forEach(lvl=>{
-    if(df[lvl])tc.innerHTML+=`<div class="do"><div class="dl">${lvl.toUpperCase()}</div><div>${df[lvl]}</div></div>`;
-  });
-}
-
-function toggleMode(newMode){if(sel===null){console.warn("No lesson selected yet");return;}mode=newMode;renderLesson();}
-
-document.addEventListener("DOMContentLoaded",()=>{
-  buildNav();
-  document.getElementById("bp").onclick=()=>toggleMode("push");
-  document.getElementById("bl").onclick=()=>toggleMode("pull");
-  document.getElementById("sbtog").onclick=()=>document.getElementById("sb").classList.toggle("open");
-  document.getElementById("overlay").onclick=()=>document.getElementById("sb").classList.remove("open");
-  document.getElementById("pbtn").onclick=()=>window.print();
-});
-</script>
+  <!-- Dashboard logic -->
+  <script src="app.js"></script>
 
 </body>
 </html>
