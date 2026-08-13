@@ -7,11 +7,17 @@ window.ELL_UNITS.push({
       u:2, w:1, t:"Abuela",
       s:["1.13","2.13"], c:"CIP 3.1", vi:"Early Intermediate",
       ov:"Arthur Dorros's Abuela celebrates the bond between a grandmother and granddaughter as they imagine soaring over New York City. ELL learners practice present-progressive tense and prepositions of place while building vocabulary around family and community.",
-      id:[
-        "Read Abuela. Stop during the flying sequence: 'Where are they flying? ABOVE the park. OVER the water. NEAR the statue.'",
-        "Write prepositions with a physical demo: above, over, near, past, between. Students act each one out with a classroom object.",
-        "Model present progressive: 'Rosalba IS FLYING above the city. Her abuela IS HOLDING her hand.'",
-        "Write 3 model sentences combining prepositions and present progressive."
+      id_pi:[
+        "Before the lesson, quietly preview preposition cards (above, over, near, past, between) with ELL students using a physical movement activity; students act each one out with a classroom object.",
+        "During the read aloud, position near your ELL students; silently hold up the matching preposition card each time Rosalba and Abuela fly past a landmark.",
+        "When the co-teacher models present-progressive sentences, lean in and prompt: 'Which preposition card matches? Point.' Give 10 seconds.",
+        "During the bird's-eye drawing activity, circulate to ELL students first; coach each student to use at least one preposition in their sentence before writing."
+      ],
+      id_po:[
+        "Open with a physical preposition activity: move a small object above/near/past/over/between different items on the table; students say the matching word each time.",
+        "Read Abuela at pull-out pace; stop at 4 landmarks and ask: 'Where are they now? Which preposition?' Students point to the card.",
+        "Model present-progressive sentences twice: 'Rosalba IS FLYING over the harbor. Abuela IS POINTING at the statue.' Guide each student to write one present-progressive sentence with a preposition.",
+        "If a student drops the -ing ending, provide a recast: 'We are describing right now, so we say she IS FLYING over — not she fly over.' Student repeats and records the corrected form."
       ],
       wd:[
         "Students draw their home from a bird's-eye view and label 3 things they can see nearby.",
@@ -38,36 +44,49 @@ window.ELL_UNITS.push({
         ],
         extensions:[
           "Research one landmark in your city and write 3 facts about it",
-          "Write a 5-sentence imaginary flight over a place you love using 5 different prepositions",
+          "Write a 5-sentence imaginary flight using 5 different prepositions",
           "Compare Abuela's New York map to a real map of your own neighborhood — find 2 similarities"
         ]
       },
-      plan:[
-        {day:"Mon", min:30, activity:"Read Abuela. Students listen for Spanish words and raise a hand each time. Count together."},
-        {day:"Tue", min:30, activity:"I Do: model prepositions with movement + present-progressive sentences. Students fill in 3 frames."},
-        {day:"Wed", min:30, activity:"We Do: bird's-eye home drawing + partner sentences. Begin class Abuela Map."},
-        {day:"Thu", min:30, activity:"You Do: flying sentences with prepositions. Teacher conferences."},
-        {day:"Fri", min:30, activity:"Gallery walk of class maps. Students describe one classmate's neighborhood: 'Above ___ I can see ___.' "}
+      plan_pi:[
+        {day:"Mon", min:30, activity:"Preview preposition cards + movement activity with ELL students before class; position near them during read aloud; hold up matching preposition card at each landmark."},
+        {day:"Tue", min:30, activity:"Support during present-progressive modeling; silently hold up the matching preposition card for each sentence example."},
+        {day:"Wed", min:30, activity:"Circulate to ELL students during bird's-eye drawing; coach preposition + present-progressive sentence before writing."},
+        {day:"Thu", min:30, activity:"Sit beside ELL students during neighborhood sentence writing; point to preposition cards as needed; note -ing errors."},
+        {day:"Fri", min:30, activity:"Coach ELL students to describe one classmate's neighborhood map using a preposition during the gallery walk."}
+      ],
+      plan_po:[
+        {day:"Mon", min:30, activity:"Pull-out vocabulary + preposition session: abuela, imagination, soar, landmark, neighborhood — physical movement activity with all 5 prepositions."},
+        {day:"Tue", min:30, activity:"Read Abuela at pull-out pace; stop at 4 landmarks; students use preposition cards to describe location."},
+        {day:"Wed", min:30, activity:"Present-progressive sentence practice: model + individual attempts; teacher recasts -ing errors."},
+        {day:"Thu", min:30, activity:"You Do in small group: flying sentences with two prepositions; teacher confers with each student."},
+        {day:"Fri", min:30, activity:"Fluency review: students describe their neighborhood drawing aloud; teacher notes preposition accuracy."}
       ]
     },
     {
       u:2, w:2, t:"Grandfather's Journey",
       s:["2.14","3.14"], c:"CIP 3.2", vi:"Intermediate",
-      ov:"Allen Say's Grandfather's Journey traces a Japanese man's deep love for both his homeland and California. ELL learners practice past-tense storytelling and 'used to' structures to describe their own two-place or two-culture experiences.",
-      id:[
-        "Read pp. 1-18. Focus on the migration sequence: Japan to California to Japan. Ask: 'How does Grandfather feel in each place?'",
-        "Model past-tense retell: 'Grandfather TRAVELED to California. He LOVED the mountains. He MISSED Japan.'",
-        "Introduce 'used to': 'He USED TO live in Japan. He USED TO eat Japanese food. But then he moved.'",
-        "Write 3 past-tense frames and 2 'used to' frames on the board. Model completing each."
+      ov:"Allen Say's Grandfather's Journey traces a Japanese man's deep love for both his homeland and California. ELL learners practice past-tense storytelling and 'used to' structures to describe their own two-place experiences.",
+      id_pi:[
+        "Before the lesson, quietly review the past-tense verb chart (go/went, live/lived, eat/ate, feel/felt) and the 'used to' frame with ELL students; students echo each irregular form twice.",
+        "During the read aloud of pp. 1-18, position near your ELL students; silently point to the past-tense chart each time an irregular past-tense verb appears.",
+        "When the co-teacher models the 'used to' structure, lean in and prompt: 'Can you say that with used to? Try it quietly first.' Give 15 seconds before the class responds.",
+        "During the two-place drawing activity, circulate to ELL students first; help each student say one 'used to' sentence aloud before writing."
+      ],
+      id_po:[
+        "Open with irregular past-tense practice: teacher says present form, students say past — go/went, live/lived, eat/ate, feel/felt — repeat each pair twice.",
+        "Read pp. 1-18 at pull-out pace; stop at each emotion moment: 'How does Grandfather feel? What did he do in the past? Use the verb chart.'",
+        "Model 'used to' sentences twice: 'He USED TO live in Japan. He USED TO eat Japanese food.' Guide each student to write two 'used to' sentences about their own life.",
+        "If a student uses present tense in a 'used to' sentence, model the correction: 'I used to goes school' needs to be 'I used to GO to school.' Student repeats and records."
       ],
       wd:[
-        "Students draw two places important to them (home country + new home, two neighborhoods, etc.).",
+        "Students draw two places important to them (home country + new home, or two neighborhoods).",
         "Write 2 sentences about each place using past tense or 'used to.'",
         "Partner share: listener gives a thumbs-up each time they hear a past-tense verb."
       ],
       yd:[
         "Write: 'I used to live in ___. I used to ___. Now I live in ___ and I ___.' ",
-        "Success criteria: two 'used to' sentences; two present-tense sentences; clear contrast between past and present."
+        "Success criteria: two 'used to' sentences; two present-tense sentences; clear past/present contrast."
       ],
       voc:[
         {word:"journey",   def:"a long and often meaningful trip from one place to another"},
@@ -89,23 +108,36 @@ window.ELL_UNITS.push({
           "Compare Grandfather's Journey to Dreamers: what do both characters have in common?"
         ]
       },
-      plan:[
-        {day:"Mon", min:30, activity:"Read pp. 1-18. Pre-teach: journey, homeland, migrate. Students begin two-column Place 1 / Place 2 drawing."},
-        {day:"Tue", min:30, activity:"I Do: past tense + 'used to' frames. Students fill in 3 frames from their own lives."},
-        {day:"Wed", min:30, activity:"We Do: two-place drawings + partner share. Past-tense peer listening check."},
-        {day:"Thu", min:30, activity:"You Do: 'used to / now' paragraph. Teacher conferences."},
-        {day:"Fri", min:30, activity:"Students share one 'used to' sentence. Class creates a 'Two Places I Love' display."}
+      plan_pi:[
+        {day:"Mon", min:30, activity:"Preview irregular past-tense chart + 'used to' frame with ELL students before class; position near them during read aloud of pp. 1-18."},
+        {day:"Tue", min:30, activity:"Support during past-tense + 'used to' modeling; point silently to the verb chart when an irregular verb appears."},
+        {day:"Wed", min:30, activity:"Circulate to ELL students first during two-place drawings; help each student say one 'used to' sentence before writing."},
+        {day:"Thu", min:30, activity:"Sit beside ELL students during the 'used to / now' paragraph; coach present vs. past tense; note irregular verb errors."},
+        {day:"Fri", min:30, activity:"Coach ELL students to share one 'used to' sentence during the class share; stand beside them as they read aloud."}
+      ],
+      plan_po:[
+        {day:"Mon", min:30, activity:"Pull-out vocabulary + irregular verb session: journey, homeland, longing, migrate, memory — past-tense verb echo drill."},
+        {day:"Tue", min:30, activity:"Read pp. 1-18 at pull-out pace; identify 6 past-tense verbs together; students add them to a personal verb chart."},
+        {day:"Wed", min:30, activity:"'Used to' sentence practice: model + individual attempts; teacher recasts present-tense intrusions."},
+        {day:"Thu", min:30, activity:"You Do in small group: 'used to / now' paragraph; teacher confers; focus on past/present contrast."},
+        {day:"Fri", min:30, activity:"Fluency review: students share 'used to' sentences; class builds a 'Two Places I Love' display together."}
       ]
     },
     {
       u:2, w:3, t:"The Keeping Quilt",
       s:["2.15","3.15"], c:"CIP 3.3", vi:"Intermediate",
       ov:"Patricia Polacco's The Keeping Quilt traces a cherished quilt through four generations of a Jewish immigrant family. ELL learners practice temporal language (long ago, today, then, now) to describe how objects and traditions travel through time.",
-      id:[
-        "Read The Keeping Quilt. Pause at each generation change: 'Now it is Anna's daughter's turn. Time has passed.'",
-        "Build a generation timeline: Great-great-grandmother → Great-grandmother → Grandmother → Mother → Child.",
-        "Model temporal language: 'LONG AGO, Anna's grandmother made the quilt from old clothing. TODAY the family still uses it.'",
-        "Write a sentence pair: 'Long ago, ___. Today, ___.' Complete both with a book example."
+      id_pi:[
+        "Before the lesson, quietly show ELL students the temporal word cards (long ago, today, then, now) and the generation timeline; students echo each temporal word once.",
+        "During the read aloud, position near your ELL students; silently hold up the matching temporal card (long ago vs. today) at each generation change.",
+        "When the co-teacher models the temporal sentence pair, lean in and prompt: 'What temporal word fits the PAST box? Point to the card.' Give 10 seconds.",
+        "During the family object drawing activity, circulate to ELL students first; help each student say one 'long ago' sentence aloud before writing."
+      ],
+      id_po:[
+        "Open with the generation timeline template; students fill in names or draw figures for each generation before reading; build background about what a generation means.",
+        "Read The Keeping Quilt at pull-out pace; stop at each generation change and have students point to the matching generation on their timeline.",
+        "Model the temporal sentence pair twice: 'Long ago, Anna's grandmother made the quilt. Today, the family still uses it.' Guide each student to write one past and one present sentence.",
+        "If a student cannot identify a temporal word, use the timeline: 'Point to the oldest person — that is LONG AGO. Point to the youngest — that is TODAY.' Re-attempt with the anchor in hand."
       ],
       wd:[
         "Students identify a real or imagined family object that could be passed down. Draw and label it.",
@@ -136,28 +168,41 @@ window.ELL_UNITS.push({
           "Compare your family tradition to the Polacco family's: how are they similar and different?"
         ]
       },
-      plan:[
-        {day:"Mon", min:30, activity:"Read The Keeping Quilt. Students raise a hand at each generation change. Build class timeline."},
-        {day:"Tue", min:30, activity:"I Do: temporal language frames. Students find 3 temporal words in the text."},
-        {day:"Wed", min:30, activity:"We Do: family object drawings + partner sentences. Class Family Treasures chart."},
-        {day:"Thu", min:30, activity:"You Do: labeled drawing + 2 temporal sentences. Teacher conferences."},
-        {day:"Fri", min:30, activity:"Students share family treasures. Class discusses: why do we keep and pass down special objects?"}
+      plan_pi:[
+        {day:"Mon", min:30, activity:"Preview temporal word cards + generation timeline with ELL students before class; position near them during read aloud; hold up long ago or today card at each generation change."},
+        {day:"Tue", min:30, activity:"Support during temporal modeling; hold up the matching temporal card as each sentence type is introduced."},
+        {day:"Wed", min:30, activity:"Circulate to ELL students during family object drawings; coach one 'long ago' and one 'today' sentence before writing."},
+        {day:"Thu", min:30, activity:"Sit beside ELL students during the writing task; point to temporal cards; note which temporal words are used incorrectly."},
+        {day:"Fri", min:30, activity:"Coach ELL students to share their family treasure during the class discussion; prompt with temporal card if needed."}
+      ],
+      plan_po:[
+        {day:"Mon", min:30, activity:"Pull-out vocabulary + temporal session: generation, tradition, treasure, ancestor, heirloom — timeline building + echo x2."},
+        {day:"Tue", min:30, activity:"Read The Keeping Quilt at pull-out pace; students mark each generation change on their personal timeline."},
+        {day:"Wed", min:30, activity:"Temporal sentence practice: model pair (long ago/today) + individual attempts; teacher recasts temporal errors."},
+        {day:"Thu", min:30, activity:"You Do in small group: labeled drawing + 2 temporal sentences; teacher confers with each student."},
+        {day:"Fri", min:30, activity:"Fluency review: students share family treasures; class discusses why objects carry meaning across generations."}
       ]
     },
     {
       u:2, w:4, t:"In My Family / En Mi Familia",
       s:["2.16","3.16"], c:"CIP 3.4", vi:"Early Intermediate",
       ov:"Carmen Lomas Garza's vivid artwork brings Mexican-American family celebrations to life. ELL learners use sensory language to describe their own cultural celebrations, using the five senses as organizational tools for descriptive writing.",
-      id:[
-        "Show and slowly read 3 double-page spreads. Narrate using every sense: 'I SEE colorful flowers. I HEAR music. I SMELL food cooking. I FEEL warm and happy.'",
-        "Build a sensory web: SEE | HEAR | SMELL | TASTE | FEEL. Fill in one book example per category.",
-        "Model a combined sentence: 'At our celebration, I see ___ and hear ___ while I smell ___.' ",
-        "Write one more model sentence using two senses together."
+      id_pi:[
+        "Before the lesson, quietly preview the sensory web template and celebration vocabulary cards with ELL students; students echo one word per sensory column before the spreads are explored.",
+        "During the 3 double-page spread exploration, position near your ELL students; silently point to the matching sensory column card for each detail you name.",
+        "When the co-teacher models a combined sensory sentence, lean in and prompt: 'Which two senses did she use? Point to the mat.' Give 10 seconds.",
+        "During the personal celebration drawing, circulate to ELL students first; coach each student to name one sensory detail before adding it to their web."
+      ],
+      id_po:[
+        "Open with the sensory web; students brainstorm one word per column from memory before reading; accept home language words and build the English label together.",
+        "Explore 3 double-page spreads at pull-out pace; stop after each one to add 2 words to the sensory web together.",
+        "Model a combined sensory sentence twice: 'At our celebration, I SEE colorful flowers AND HEAR music while I SMELL food cooking.' Guide each student to write one sentence using two senses.",
+        "If a student can only name one sense, close their eyes: 'Imagine your celebration. What did you SEE? HEAR?' Repeat for each sense until student can name two and write them."
       ],
       wd:[
-        "Students draw one scene from their own family celebration (birthday, holiday, meal, etc.).",
+        "Students draw one scene from their own family celebration.",
         "Fill in a personal sensory web with at least 3 of the 5 categories.",
-        "Partners swap webs, circle every sensory word they find, and read one example aloud."
+        "Partners swap webs, circle every sensory word, and read one example aloud."
       ],
       yd:[
         "Write 3 sentences about a family celebration using at least one sensory word in each.",
@@ -183,23 +228,36 @@ window.ELL_UNITS.push({
           "Compare In My Family to The Keeping Quilt: what do both families pass down?"
         ]
       },
-      plan:[
-        {day:"Mon", min:30, activity:"Explore 3 double-page spreads. Build class sensory web for one spread together."},
-        {day:"Tue", min:30, activity:"I Do: model combined sensory sentences. Students fill in class web from 2 more spreads."},
-        {day:"Wed", min:30, activity:"We Do: personal celebration drawings + sensory web. Partner sensory word circle."},
-        {day:"Thu", min:30, activity:"You Do: 3 sensory sentences. Teacher conferences."},
-        {day:"Fri", min:30, activity:"Class celebration gallery walk. Students write one sensory observation from 2 classmates' drawings."}
+      plan_pi:[
+        {day:"Mon", min:30, activity:"Preview sensory web template with ELL students before class; position near them during spread exploration; silently point to matching sensory column."},
+        {day:"Tue", min:30, activity:"Support during combined sensory sentence modeling; point to the matching sensory column for each example."},
+        {day:"Wed", min:30, activity:"Circulate to ELL students during celebration drawings; coach one word per sensory column before writing."},
+        {day:"Thu", min:30, activity:"Sit beside ELL students during the 3-sentence task; coach two-sense combinations; note which senses are underrepresented."},
+        {day:"Fri", min:30, activity:"Coach ELL students to write one sensory observation during the gallery walk; stand beside them as they read it aloud."}
+      ],
+      plan_po:[
+        {day:"Mon", min:30, activity:"Pull-out vocabulary + sensory session: celebration, tradition, culture, community, ceremony — one word per column brainstorm."},
+        {day:"Tue", min:30, activity:"Explore 3 spreads at pull-out pace; add 2 words per spread to the class sensory web."},
+        {day:"Wed", min:30, activity:"Combined sensory sentence practice: model + individual attempts; teacher coaches two-sense combinations."},
+        {day:"Thu", min:30, activity:"You Do in small group: 3 sensory sentences; teacher confers; note which senses are still missing."},
+        {day:"Fri", min:30, activity:"Fluency review: students share celebration sentences; teacher notes sensory vocabulary breadth for next week."}
       ]
     },
     {
       u:2, w:5, t:"Everybody Cooks Rice",
       s:["3.9","3.10"], c:"CIP 3.5", vi:"Intermediate",
       ov:"Norah Dooley's Everybody Cooks Rice reveals how one food connects families from vastly different cultural backgrounds. ELL learners practice making inferences from text clues and illustrations while building vocabulary around food, culture, and diversity.",
-      id:[
-        "Read pp. 1-16. After each family: 'How do we know which culture this family is from? What clues does the author give us?'",
-        "Model an inference: 'The book mentions arroz con pollo. That is Spanish. So I can infer this family is from a Spanish-speaking country.'",
-        "Write the inference frame: 'The text/picture shows ___. I know ___. So I can infer ___.' ",
-        "Model one complete inference using a second family from the book."
+      id_pi:[
+        "Before the lesson, quietly preview the inference graphic organizer (Text Clue + What I Know = Inference) with ELL students; complete one example together before the read aloud.",
+        "During the read aloud of pp. 1-16, position near your ELL students; silently point to the Text Clue box on the organizer when a cultural detail appears.",
+        "When the co-teacher models the inference frame, lean in and prompt: 'What clue did you notice? Whisper it to me.' Give 15 seconds before the class responds.",
+        "During the group inference activity, circulate to ELL students first; coach them to find one text clue before making their inference."
+      ],
+      id_po:[
+        "Open with two vocabulary anchors: culture and infer; use picture cards + gesture + echo x2; model one inference from a familiar context before opening the book.",
+        "Read pp. 1-16 at pull-out pace; stop after each family and make one inference together: 'The text says ___. I know ___. So I can infer ___.' ",
+        "Model the inference frame twice with two different families; guide each student to complete one inference using the frame with text evidence.",
+        "If a student makes an unsupported inference, ask: 'What in the TEXT tells you that? Point to it.' Student finds the clue, then re-states the inference with evidence."
       ],
       wd:[
         "Read pp. 17-end. Groups make inferences about 2 families not yet discussed.",
@@ -230,12 +288,19 @@ window.ELL_UNITS.push({
           "Create a class 'Food from Around the World' infographic with one dish per student"
         ]
       },
-      plan:[
-        {day:"Mon", min:30, activity:"Read pp. 1-16. Pre-teach: infer, diverse. Introduce inference frame with one modeled example."},
-        {day:"Tue", min:30, activity:"I Do: model inference for 2 families. Students copy one complete inference."},
-        {day:"Wed", min:30, activity:"We Do: group inferences for 2 new families. Class comparison chart."},
-        {day:"Thu", min:30, activity:"You Do: family food inference sentences. Teacher conferences."},
-        {day:"Fri", min:30, activity:"Students share food sentences. Optional: class recipe collection displayed on the wall."}
+      plan_pi:[
+        {day:"Mon", min:30, activity:"Preview inference graphic organizer with ELL students; complete one example together; position near them during read aloud of pp. 1-16."},
+        {day:"Tue", min:30, activity:"Support during inference frame modeling; point silently to the Text Clue box on student organizers."},
+        {day:"Wed", min:30, activity:"Circulate to ELL groups during group inference activity; help each student identify one text clue before inferring."},
+        {day:"Thu", min:30, activity:"Sit beside ELL students during the family food inference writing; coach 'because' and inference language."},
+        {day:"Fri", min:30, activity:"Coach ELL students to share their family food sentence during the class share; stand beside them."}
+      ],
+      plan_po:[
+        {day:"Mon", min:30, activity:"Pull-out vocabulary + inference session: culture, infer, diverse, recipe, ingredient — model one sample inference."},
+        {day:"Tue", min:30, activity:"Read pp. 1-16 at pull-out pace; make 3 inferences together; students add text clues to their organizers."},
+        {day:"Wed", min:30, activity:"Inference practice: model + individual attempts; teacher coaches students to cite text evidence."},
+        {day:"Thu", min:30, activity:"You Do in small group: family food inference sentence; teacher confers; check 'because' and inference logic."},
+        {day:"Fri", min:30, activity:"Fluency review: students share food sentences; begin class food-around-the-world display."}
       ]
     }
   ]
