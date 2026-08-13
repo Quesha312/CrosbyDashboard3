@@ -2,22 +2,22 @@
 (function () {
   "use strict";
 
-  // ── crash-guard ────────────────────────────────────────────────────────────
+  // — crash-guard ——————————————————————————————————————————————
   if (!window.ELL_UNITS || window.ELL_UNITS.length < 5) {
     document.getElementById("app").innerHTML =
       "<div class=\"error-banner\">" +
       "<h2>&#9888; Dashboard Error</h2>" +
-      "<p>One or more unit files failed to load. Confirm that unit1.js through unit5.js are in the same folder as index.html and that all five script tags are present in the correct order before app.js.</p>" +
+      "<p>One or more unit files failed to load. Confirm that unit1.js through unit5.js are in the same folder as index.html and that all five script tags appear before app.js.</p>" +
       "</div>";
     return;
   }
 
-  var UNITS  = window.ELL_UNITS;
-  var TABS   = ["Overview", "I Do", "We Do", "You Do", "Vocabulary", "Differentiation", "5-Day Plan"];
+  var UNITS = window.ELL_UNITS;
+  var TABS  = ["Overview", "I Do", "We Do", "You Do", "Vocabulary", "Differentiation", "5-Day Plan"];
 
   var state = { unit:0, week:0, tab:0, mode:"push-in" };
 
-  // ── localStorage ────────────────────────────────────────────────────────────
+  // — localStorage ————————————————————————————————————————————
   function saveState() {
     try {
       localStorage.setItem("ell_nav", JSON.stringify({
@@ -36,7 +36,7 @@
     } catch (e) {}
   }
 
-  // ── sidebar ──────────────────────────────────────────────────────────────────
+  // — sidebar —————————————————————————————————————————————————
   function renderSidebar() {
     var html = "";
     for (var u = 0; u < UNITS.length; u++) {
@@ -57,7 +57,7 @@
     document.getElementById("sidebar").innerHTML = html;
   }
 
-  // ── tabs ─────────────────────────────────────────────────────────────────────
+  // — tabs ————————————————————————————————————————————————————
   function renderTabs() {
     var html = "";
     for (var i = 0; i < TABS.length; i++) {
@@ -67,7 +67,7 @@
     document.getElementById("tabs").innerHTML = html;
   }
 
-  // ── mode button ───────────────────────────────────────────────────────────────
+  // — mode button ————————————————————————————————————————————
   function renderModeBtn() {
     var btn = document.getElementById("mode-toggle");
     if (!btn) return;
@@ -80,7 +80,7 @@
     }
   }
 
-  // ── content helpers ──────────────────────────────────────────────────────────
+  // — content helpers ————————————————————————————————————————
   function stepList(arr) {
     if (!arr || !arr.length) return "<p class=\"empty\">No content available.</p>";
     var h = "<ol class=\"step-list\">";
@@ -125,15 +125,18 @@
     return h + "</tbody></table>";
   }
 
-  // ── lesson panel ─────────────────────────────────────────────────────────────
+  // — lesson panel ——————————————————————————————————————————
   function renderLesson() {
     var L = UNITS[state.unit].weeks[state.week];
+    var isPi = (state.mode === "push-in");
     var h = "";
 
+    // header
     h += "<div class=\"lesson-header\">";
     h += "<h2>" + L.t + "</h2>";
     h += "<div class=\"badges\">";
-    h += "<span class=\"badge mode-badge\">" + (state.mode === "push-in" ? "Push-In" : "Pull-Out") + "</span>";
+    h += "<span class=\"badge " + (isPi ? "mode-badge-pi" : "mode-badge-po") + "\">" +
+         (isPi ? "&#x1F7E2; Push-In" : "&#x1F7E0; Pull-Out") + "</span>";
     if (L.c)  h += "<span class=\"badge cip-badge\">"   + L.c  + "</span>";
     if (L.vi) h += "<span class=\"badge vista-badge\">Vista: " + L.vi + "</span>";
     h += "</div></div>";
@@ -147,27 +150,42 @@
     }
 
     h += "<div class=\"tab-panel\">";
+
     if (state.tab === 0) {
       h += "<h3>Overview</h3><p class=\"ov-text\">" + (L.ov || "") + "</p>";
+
     } else if (state.tab === 1) {
-      h += "<h3>I Do &mdash; Teacher Modeling</h3>" + stepList(L.id);
+      var idArr  = isPi ? L.id_pi : L.id_po;
+      var idHead = isPi
+        ? "I Do &mdash; <span class=\"mode-callout pi\">Push-In: Co-Teaching Support</span>"
+        : "I Do &mdash; <span class=\"mode-callout po\">Pull-Out: Small Group Instruction</span>";
+      h += "<h3>" + idHead + "</h3>" + stepList(idArr);
+
     } else if (state.tab === 2) {
       h += "<h3>We Do &mdash; Guided Practice</h3>" + stepList(L.wd);
+
     } else if (state.tab === 3) {
       h += "<h3>You Do &mdash; Independent Task</h3>" + stepList(L.yd);
+
     } else if (state.tab === 4) {
       h += "<h3>Vocabulary</h3>" + vocabGrid(L.voc);
+
     } else if (state.tab === 5) {
       h += "<h3>Differentiation</h3>" + diffBlock(L.df);
-    } else if (state.tab === 6) {
-      h += "<h3>5-Day Plan (30 min/day)</h3>" + planTable(L.plan);
-    }
-    h += "</div>";
 
+    } else if (state.tab === 6) {
+      var planArr  = isPi ? L.plan_pi : L.plan_po;
+      var planHead = isPi
+        ? "5-Day Plan (30 min/day) &mdash; <span class=\"mode-callout pi\">Push-In Schedule</span>"
+        : "5-Day Plan (30 min/day) &mdash; <span class=\"mode-callout po\">Pull-Out Schedule</span>";
+      h += "<h3>" + planHead + "</h3>" + planTable(planArr);
+    }
+
+    h += "</div>";
     document.getElementById("lesson-content").innerHTML = h;
   }
 
-  // ── full render ───────────────────────────────────────────────────────────────
+  // — full render ————————————————————————————————————————————
   function render() {
     renderSidebar();
     renderTabs();
@@ -176,11 +194,10 @@
     saveState();
   }
 
-  // ── event delegation ──────────────────────────────────────────────────────────
+  // — event delegation ——————————————————————————————————————
   document.addEventListener("click", function (e) {
     var t = e.target;
 
-    // Unit title
     if (t.classList && t.classList.contains("unit-title")) {
       var ug = t.parentElement;
       if (ug && ug.dataset.unit !== undefined) {
@@ -192,7 +209,6 @@
       return;
     }
 
-    // Week item
     if (t.classList && t.classList.contains("week-item")) {
       state.unit = parseInt(t.dataset.unit, 10);
       state.week = parseInt(t.dataset.week, 10);
@@ -201,25 +217,22 @@
       return;
     }
 
-    // Tab
     if (t.classList && t.classList.contains("tab-btn")) {
       state.tab = parseInt(t.dataset.tab, 10);
       render();
       return;
     }
 
-    // Mode toggle
     if (t.id === "mode-toggle") {
       state.mode = (state.mode === "push-in") ? "pull-out" : "push-in";
       render();
       return;
     }
 
-    // Print
     if (t.id === "print-btn") { window.print(); }
   });
 
-  // ── init ──────────────────────────────────────────────────────────────────────
+  // — init ——————————————————————————————————————————————————
   loadState();
   render();
 
