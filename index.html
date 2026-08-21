@@ -1,44 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Ms. Crosby ELL Reading Dashboard — Push-In & Pull-Out Lesson Planner" />
-  <title>Ms. Crosby ELL Dashboard</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ms. Crosby ELL Dashboard</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <header>
-    <h1>📚 Ms. Crosby ELL Dashboard</h1>
-    <div class="header-controls">
-      <button id="mode-toggle">Switch to Pull-Out</button>
-      <button id="print-btn">🖨 Print Lesson</button>
-    </div>
-  </header>
-
-  <div id="app">
-
-    <!-- Sidebar: unit & week navigation -->
-    <nav id="sidebar" aria-label="Unit and Week Navigation"></nav>
-
-    <!-- Main panel: tabs + lesson content -->
-    <div id="main">
-      <div id="tabs" role="tablist" aria-label="Lesson Tabs"></div>
-      <div id="lesson-content" role="tabpanel"></div>
-    </div>
-
+<header>
+  <h1>Ms. Crosby ELL Dashboard</h1>
+  <div class="header-controls">
+    <button id="mode-toggle">Push-In</button>
+    <button id="print-btn">Print</button>
   </div>
-
-  <!-- Unit data files — must load before app.js -->
-  <script src="unit1.js"></script>
-  <script src="unit2.js"></script>
-  <script src="unit3.js"></script>
-  <script src="unit4.js"></script>
-  <script src="unit5.js"></script>
-
-  <!-- Dashboard logic -->
-  <script src="app.js"></script>
-
+</header>
+<div id="app">
+  <div id="sidebar"></div>
+  <div id="main">
+    <div id="tabs"></div>
+    <div id="lesson-content"></div>
+  </div>
+</div>
+<script src="unit1.js"></script>
+<script src="unit2.js"></script>
+<script src="unit3.js"></script>
+<script src="unit4.js"></script>
+<script src="unit5.js"></script>
+<script src="savvas_u1.js"></script>
+<script src="savvas_u2.js"></script>
+<script src="savvas_u3.js"></script>
+<script src="savvas_u4.js"></script>
+<script src="savvas_u5.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

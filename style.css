@@ -81,6 +81,12 @@ button:active { transform: scale(0.96); }
 .error-banner h2 { color: #b91c1c; margin-bottom: 0.5rem; }
 .error-banner p { color: #7f1d1d; font-size: 0.95rem; line-height: 1.6; }
 .empty { color: var(--text-muted); font-style: italic; }
+.section-switch { display:flex; gap:0.4rem; padding:0.75rem 1rem 0.5rem; }
+.section-btn { flex:1; background:#2a3a5e; color:#cbd5e1; font-size:0.78rem; padding:0.45rem 0.5rem; border-radius:6px; border:none; cursor:pointer; }
+.section-btn.active { background:var(--accent); color:#1a1f36; font-weight:700; }
+#level-toggle { background:#7c3aed; color:#fff; }
+#section-toggle { background:rgba(255,255,255,0.2); color:#fff; }
+
 @media (max-width: 680px) { #sidebar { width: 200px; min-width: 170px; } #lesson-content { padding: 1rem; } .vocab-grid { grid-template-columns: 1fr; } header h1 { font-size: 0.95rem; } .lesson-header h2 { font-size: 1.1rem; } }
 @media (max-width: 480px) { #app { flex-direction: column; height: auto; } #sidebar { width: 100%; min-width: unset; max-height: 220px; } #main { height: auto; } }
 @media print { header, #sidebar, #tabs, .header-controls { display: none !important; } #app { display: block; height: auto; } #lesson-content { padding: 0; overflow: visible; } .step-list li, .vocab-card, .diff-group { break-inside: avoid; } .plan-table { page-break-inside: avoid; } }
